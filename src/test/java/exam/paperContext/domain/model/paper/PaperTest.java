@@ -20,10 +20,16 @@ public class PaperTest {
         final String teacherId = "teacher-6b35fdd8-31de-4af4-9420-3331058260c5";
         final String firstQuizId = "quiz-f500ee0d-3c9f-494a-bc13-993250053194";
         final String secondQuizId = "quiz-29bbb66c-80af-45b3-b593-fc4a358e900e";
+        final String thirdQuizId = "quiz-29bbb66c-80af-45b3-b593-fc4a358e900e";
+        final String fourthQuizId = "quiz-29bbb66c-80af-45b3-b593-fc4a358e900e";
+        final String fifthQuizId = "quiz-29bbb66c-80af-45b3-b593-fc4a358e900e";
 
         List<BlankQuiz> blankQuizzes = Arrays.asList(
                 new BlankQuiz(firstQuizId, 10),
-                new BlankQuiz(secondQuizId, 15)
+                new BlankQuiz(secondQuizId, 15),
+                new BlankQuiz(thirdQuizId, 15),
+                new BlankQuiz(fourthQuizId, 15),
+                new BlankQuiz(fifthQuizId, 15)
         );
 
         Paper paper = Paper.assemble(paperId, teacherId, blankQuizzes);
@@ -32,7 +38,7 @@ public class PaperTest {
 
         assertThat(paper.getPaperId(), is(new PaperId("paper-a4c68d5d-6c18-4707-b8c2-1fd18846ebf1")));
         assertThat(paper.getCreateTime(), instanceOf(LocalDateTime.class));
-        assertThat(paper.getQuizzes().size(), is(2));
+        assertThat(paper.getQuizzes().size(), is(5));
     }
 
     @Test
