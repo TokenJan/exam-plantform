@@ -13,6 +13,9 @@ public class BlankQuiz implements Entity<BlankQuiz> {
     private String answer;
 
     public BlankQuiz(BlankQuizId quizId, String question, String answer) {
+        if (question == null || answer == null) {
+            throw new InvalidBlankQuizException();
+        }
         this.quizId = quizId;
         this.question = question;
         this.answer = answer;
