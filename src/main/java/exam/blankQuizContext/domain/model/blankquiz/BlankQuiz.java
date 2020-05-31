@@ -5,7 +5,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 @Getter
-@EqualsAndHashCode
+@EqualsAndHashCode(of = {"quizId"})
 public class BlankQuiz implements Entity<BlankQuiz> {
 
     private BlankQuizId quizId;
