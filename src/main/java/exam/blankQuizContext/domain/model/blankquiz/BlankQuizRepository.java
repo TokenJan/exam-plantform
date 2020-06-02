@@ -12,5 +12,4 @@ public interface BlankQuizRepository {
 
     List<BlankQuiz> getAll();
 
-    void delete(BlankQuizId blankQuizId);
 }

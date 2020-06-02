@@ -20,6 +20,7 @@ public class BlankQuizTest {
         assertThat(blankQuiz.getQuizId(), is(new BlankQuizId(blankQuizId)));
         assertThat(blankQuiz.getQuestion(), is(question));
         assertThat(blankQuiz.getAnswer(), is(answer));
+        assertThat(blankQuiz.getDeleted(), is(false));
     }
 
     @Test
@@ -38,5 +39,23 @@ public class BlankQuizTest {
         assertThat(blankQuiz.getQuizId(), is(new BlankQuizId(blankQuizId)));
         assertThat(blankQuiz.getQuestion(), is(newQuestion));
         assertThat(blankQuiz.getAnswer(), is(newAnswer));
+        assertThat(blankQuiz.getDeleted(), is(false));
+    }
+
+    @Test
+    public void should_delete_blank_quiz() {
+
+        final String blankQuizId = "quiz-f500ee0d-3c9f-494a-bc13-993250053194";
+        final String question = "what is your name?";
+        final String answer = "Jan";
+
+        BlankQuiz blankQuiz = new BlankQuiz(new BlankQuizId(blankQuizId), question, answer);
+        blankQuiz.delete();
+
+        assertThat(blankQuiz, is(notNullValue()));
+        assertThat(blankQuiz.getQuizId(), is(new BlankQuizId(blankQuizId)));
+        assertThat(blankQuiz.getQuestion(), is(question));
+        assertThat(blankQuiz.getAnswer(), is(answer));
+        assertThat(blankQuiz.getDeleted(), is(true));
     }
 }

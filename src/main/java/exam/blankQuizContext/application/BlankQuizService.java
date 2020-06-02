@@ -38,6 +38,7 @@ public class BlankQuizService {
     }
 
     public void deleteBlankQuiz(String blankQuizId) {
-        blankQuizRepository.delete(new BlankQuizId(blankQuizId));
+        BlankQuiz blankQuiz = blankQuizRepository.find(new BlankQuizId(blankQuizId));
+        blankQuiz.delete();
     }
 }

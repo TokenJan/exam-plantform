@@ -5,11 +5,11 @@ import exam.blankQuizContext.domain.model.blankquiz.BlankQuizId;
 import exam.blankQuizContext.domain.model.blankquiz.BlankQuizRepository;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Component
 public class MemoryBlankQuizRepository implements BlankQuizRepository {
@@ -19,6 +19,7 @@ public class MemoryBlankQuizRepository implements BlankQuizRepository {
     @Override
     public BlankQuiz find(BlankQuizId blankQuizId) {
         return blankQuizzes.stream()
+                .filter(BlankQuiz::isAvailable)
                 .filter(blankQuiz -> blankQuiz.getQuizId().equals(blankQuizId))
                 .findFirst()
                 .orElseThrow(NullPointerException::new);
@@ -36,14 +37,9 @@ public class MemoryBlankQuizRepository implements BlankQuizRepository {
 
     @Override
     public List<BlankQuiz> getAll() {
-        return new ArrayList<>(blankQuizzes);
+        return this.blankQuizzes.stream()
+                .filter(BlankQuiz::isAvailable)
+                .collect(Collectors.toList());
     }
 
-    @Override
-    public void delete(BlankQuizId blankQuizId) {
-        blankQuizzes.stream()
-                .filter(blankQuiz -> blankQuiz.getQuizId().equals(blankQuizId))
-                .findFirst()
-                .ifPresent(blankQuiz -> blankQuizzes.remove(blankQuiz));
-    }
 }
