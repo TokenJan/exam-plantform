@@ -4,6 +4,7 @@ import exam.blankQuizContext.application.BlankQuizService;
 import exam.blankQuizContext.application.CreateBlankQuizCommand;
 import exam.blankQuizContext.application.UpdateBlankQuizCommand;
 import exam.blankQuizContext.domain.model.blankquiz.BlankQuiz;
+import exam.blankQuizContext.infrastructure.MemoryBlankQuizReadRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,20 +22,17 @@ import java.util.List;
 public class BlankQuizController {
 
     private BlankQuizService blankQuizService;
+    private MemoryBlankQuizReadRepository memoryBlankQuizReadRepository;
 
     @Autowired
-    public BlankQuizController(BlankQuizService blankQuizService) {
+    public BlankQuizController(BlankQuizService blankQuizService, MemoryBlankQuizReadRepository memoryBlankQuizReadRepository) {
         this.blankQuizService = blankQuizService;
+        this.memoryBlankQuizReadRepository = memoryBlankQuizReadRepository;
     }
 
     @GetMapping("/blankQuizzes")
     List<BlankQuiz> getAll() {
-        return blankQuizService.getAll();
-    }
-
-    @GetMapping("/blankQuizzes/{blankQuizId}")
-    BlankQuiz find(@PathVariable String blankQuizId) {
-        return blankQuizService.find(blankQuizId);
+        return memoryBlankQuizReadRepository.getAll();
     }
 
     @PostMapping("/blankQuizzes/{blankQuizId}")

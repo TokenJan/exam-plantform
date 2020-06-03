@@ -1,7 +1,5 @@
 package exam.blankQuizContext.domain.model.blankquiz;
 
-import java.util.List;
-
 public interface BlankQuizRepository {
 
     BlankQuiz find(BlankQuizId blankQuizId);
@@ -9,7 +7,5 @@ public interface BlankQuizRepository {
     void save(BlankQuiz blankQuiz);
 
     BlankQuizId nextBlankQuizId();
-
-    List<BlankQuiz> getAll();
 
 }

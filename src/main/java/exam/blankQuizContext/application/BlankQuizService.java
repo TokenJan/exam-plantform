@@ -6,8 +6,6 @@ import exam.blankQuizContext.domain.model.blankquiz.BlankQuizRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class BlankQuizService {
 
@@ -16,14 +14,6 @@ public class BlankQuizService {
     @Autowired
     public BlankQuizService(BlankQuizRepository blankQuizRepository) {
         this.blankQuizRepository = blankQuizRepository;
-    }
-
-    public List<BlankQuiz> getAll() {
-        return blankQuizRepository.getAll();
-    }
-
-    public BlankQuiz find(String blankQuizId) {
-        return blankQuizRepository.find(new BlankQuizId(blankQuizId));
     }
 
     public void createBlankQuiz(CreateBlankQuizCommand command) {
